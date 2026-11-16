@@ -207,7 +207,7 @@ a:hover { text-decoration: underline; }
     align-items: flex-start;
     gap: 0;
     padding: .5rem 1.25rem 1rem;
-    background: var(--bg-soft);
+    background: var(--bg-card);
     border-bottom: 1px solid var(--line);
   }
   .nav-links li { width: 100%; }
