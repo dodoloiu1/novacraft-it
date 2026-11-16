@@ -6,7 +6,16 @@
   <title>NovaCraft IT Services</title>
   <meta name="description" content="NovaCraft IT Services — cloud migration, managed security, custom software and data platforms.">
   <meta name="theme-color" content="#0b1220">
-  <link rel="stylesheet" href="assets/styles.css?v=3">
+  <link rel="stylesheet" href="assets/styles.css?v=5">
+  <script>
+    /* Set the theme before first paint so there is no flash of the wrong one. */
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem("novacraft-theme"); } catch (e) {}
+      var theme = stored || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
 </head>
 <body id="top">
 <!-- BASELINE: the four builders replace the four marked slots, nothing else. -->
@@ -15,7 +24,6 @@
 <header class="site-header">
   <nav class="wrap nav">
     <a class="brand" href="#top">NovaCraft</a>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
     <ul id="nav-links" class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
@@ -23,6 +31,11 @@
       <li><a href="#tech">Tech</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light mode">
+      <span class="icon-moon" aria-hidden="true">&#9790;</span>
+      <span class="icon-sun" aria-hidden="true">&#9728;</span>
+    </button>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
   </nav>
 </header>
 <!-- @SOLAR_END -->
@@ -241,6 +254,6 @@
 </footer>
 <!-- @SOLAR_END -->
 
-<script src="assets/main.js?v=2"></script>
+<script src="assets/main.js?v=4"></script>
 </body>
 </html>

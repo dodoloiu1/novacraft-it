@@ -99,8 +99,33 @@
     });
   }
 
+  /* Theme toggle: persisted in localStorage, label and state kept in sync. */
+  var themeToggle = document.querySelector(".theme-toggle");
+
+  function currentTheme() {
+    return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+  }
+
+  function syncThemeButton() {
+    if (!themeToggle) return;
+    var light = currentTheme() === "light";
+    themeToggle.setAttribute("aria-pressed", light ? "true" : "false");
+    themeToggle.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode");
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      var next = currentTheme() === "light" ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("novacraft-theme", next); } catch (e) {}
+      syncThemeButton();
+    });
+    syncThemeButton();
+  }
+
   window.NovaCraft = {
     toggleNav: function () { if (navToggle) navToggle.click(); },
-    version: "1.0.0"
+    theme: currentTheme,
+    version: "1.1.0"
   };
 })();

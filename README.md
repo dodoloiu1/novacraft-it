@@ -11,8 +11,14 @@ lead.
 | hy4 | `nous:tencent/hy4-flash:free` | about, tech stack |
 | solar | `nous:upstage/solar-mini4:free` | navbar, footer |
 
-Lead-owned: `index.html` skeleton, `assets/styles.css`, `assets/main.js`,
-`SPEC.md`, `TECHNIQUES.md`, git history, GitHub Pages.
+| lead | `nous:meituan/longcat-2.5:free` (parent) | integration, theme toggle, git, deploy |
+
+## Features
+
+- Light/dark toggle in the navbar, persisted in `localStorage`, defaulting to
+  `prefers-color-scheme`. Set before first paint, so no flash of the wrong theme.
+- Mobile nav with outside-click and Escape dismissal.
+- Contact form validated client-side; it has no backend and posts nowhere.
 
 ## Run locally
 

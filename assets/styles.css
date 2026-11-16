@@ -10,8 +10,24 @@
   --accent: #22d3ee;
   --accent-2: #38bdf8;
   --accent-ink: #04222b;
+  --header-bg: rgba(11, 18, 32, .88);
   --radius: 14px;
   --maxw: 1120px;
+}
+
+/* Light theme: same layout, inverted surfaces. Accent is darkened to keep
+   >= 4.5:1 contrast on a white card. */
+[data-theme="light"] {
+  --bg: #f5f8fc;
+  --bg-soft: #ffffff;
+  --bg-card: #ffffff;
+  --line: #d9e1ec;
+  --text: #10203a;
+  --muted: #4d5f79;
+  --accent: #0e7490;
+  --accent-2: #0891b2;
+  --accent-ink: #ffffff;
+  --header-bg: rgba(245, 248, 252, .88);
 }
 
 * { box-sizing: border-box; }
@@ -153,12 +169,12 @@ a:hover { text-decoration: underline; }
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(11, 18, 32, .88);
+  background: var(--header-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
-.nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.25rem; }
-.brand { color: var(--text); font-weight: 800; font-size: 1.1rem; letter-spacing: -.01em; }
+.nav { display: flex; align-items: center; gap: 1rem; min-height: 4.25rem; }
+.brand { margin-right: auto; color: var(--text); font-weight: 800; font-size: 1.1rem; letter-spacing: -.01em; }
 .brand:hover { text-decoration: none; color: var(--accent); }
 .nav-links { display: flex; align-items: center; gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
 .nav-links a { color: var(--muted); font-size: .95rem; }
@@ -173,6 +189,26 @@ a:hover { text-decoration: underline; }
   padding: .5rem .75rem;
   cursor: pointer;
 }
+
+/* Theme toggle: always visible, sits left of the mobile menu button. */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+[data-theme="dark"] .icon-sun { display: none; }
+[data-theme="light"] .icon-moon { display: none; }
 
 .site-footer { border-top: 1px solid var(--line); padding: 3rem 0 2rem; background: var(--bg-soft); }
 .footer-grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }
