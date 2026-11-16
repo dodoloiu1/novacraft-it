@@ -2,6 +2,9 @@
 (function () {
   "use strict";
 
+  /* Mark that JS is running so CSS only hides .reveal when it can reveal it. */
+  document.documentElement.classList.add("js");
+
   var navToggle = document.querySelector(".nav-toggle");
   var navLinks = document.getElementById("nav-links");
 
@@ -17,6 +20,23 @@
         navToggle.setAttribute("aria-expanded", "false");
         navToggle.textContent = "Menu";
       }
+    });
+
+    /* Dismiss on outside click and on Escape. */
+    document.addEventListener("click", function (event) {
+      if (!navLinks.classList.contains("open")) return;
+      if (navLinks.contains(event.target) || navToggle.contains(event.target)) return;
+      navLinks.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.textContent = "Menu";
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape" || !navLinks.classList.contains("open")) return;
+      navLinks.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.textContent = "Menu";
+      navToggle.focus();
     });
   }
 
@@ -38,6 +58,12 @@
   } else {
     revealEls.forEach(function (el) { el.classList.add("is-visible"); });
   }
+
+  /* Safety net: never leave a block invisible if the observer never fires
+     (background tab, throttled rendering, print). */
+  setTimeout(function () {
+    revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+  }, 1200);
 
   /* Contact form: client-side only. Marks invalid fields, no network call. */
   var form = document.getElementById("contact-form");

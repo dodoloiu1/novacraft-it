@@ -60,9 +60,9 @@ def main() -> int:
     if len(found) != MAX_SECTIONS:
         defects.append(f"expected {MAX_SECTIONS} sections, found {len(found)}: {found}")
 
-    if 'href="assets/styles.css"' not in html:
+    if not re.search(r'href="assets/styles\.css(\?[^"]*)?"', html):
         defects.append("stylesheet not linked")
-    if 'src="assets/main.js"' not in html:
+    if not re.search(r'src="assets/main\.js(\?[^"]*)?"', html):
         defects.append("main.js not linked")
 
     for asset in ("assets/styles.css", "assets/main.js"):
